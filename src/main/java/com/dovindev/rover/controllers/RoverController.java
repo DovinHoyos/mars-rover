@@ -2,18 +2,21 @@ package com.dovindev.rover.controllers;
 
 import com.dovindev.rover.dto.RoverDto;
 import com.dovindev.rover.models.Command;
-import com.dovindev.rover.models.Direction;
 import com.dovindev.rover.models.Rover;
+import com.dovindev.rover.services.IRoverService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 public class RoverController {
 
-    @GetMapping("/rover/location")
-    public Rover getLocation(){
-        Rover rover = new Rover(1,6, Direction.EAST);
-        return rover;
+    @Autowired
+    IRoverService service;
+
+    @GetMapping("/rover")
+    public Rover getById(){
+        return service.getById();
     }
 
     @PostMapping("/rover")

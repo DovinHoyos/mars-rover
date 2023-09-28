@@ -1,39 +1,20 @@
 package com.dovindev.rover.models;
 
+import jakarta.persistence.*;
 import lombok.Data;
-
-
+@Data
+@Entity
+@Table(name = "rover")
 public class Rover {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "posx")
     private Integer x;
+    @Column(name = "posy")
     private Integer y;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "direction")
     private Direction direction;
-    private static long lastId;
-
-    public Rover(){
-        this.id = ++lastId;
-    }
-
-    public Rover( Integer x, Integer y, Direction direction) {
-        this();
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Integer getX() {
-        return x;
-    }
-
-    public Integer getY() {
-        return y;
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
 }
